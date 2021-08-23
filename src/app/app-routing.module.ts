@@ -1,13 +1,22 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
+import {YoutubePlaylistComponent} from './youtube-playlist/youtube-playlist.component';
+import {YoutubePlayerComponent} from './youtube-player/youtube-player.component';
 import {TimelinesComponent} from './timelines/timelines.component';
 
 
 const routes: Routes = [
   {
+    path: 'youtube',
+    component: YoutubePlaylistComponent,
+    children: [{
+      path: ':id',
+      component: YoutubePlayerComponent
+    }]
+  },
+  {
     path: 'timelines',
     component: TimelinesComponent
-
   }
 ];
 
@@ -15,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
